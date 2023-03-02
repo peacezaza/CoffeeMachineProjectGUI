@@ -91,9 +91,22 @@ public class CoffeeMachineGUI extends JFrame {
 
 //        set imageicon to jbutton
         JButton sizeS = new JButton();
-//        ImageIcon S = new ImageIcon("S.png");
-        sizeS.setIcon(new ImageIcon("S.png"));
-        sizeS.setSize(100, 100);
+
+        ImageIcon S = new ImageIcon("S.png");
+        Image sSizePicture = S.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        S.setImage(sSizePicture);
+        sizeS.setIcon(S);
+        sizeS.setBackground(color);
+        sizeS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                JButton j = (JButton) e.getSource();
+                j.setBackground(new Color(226,218,196,255));
+            }
+//            public void mouseExited(java.awt.event.MouseEvent e) {
+//                JButton j = (JButton) e.getSource();
+//                j.setBackground(Color.GREEN);
+//            }
+        });
 
         //image Size
         SizePanel1.add(sizeS);
