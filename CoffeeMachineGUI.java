@@ -212,14 +212,17 @@ public class CoffeeMachineGUI extends JFrame {
         SizePanel1.add(sizeL);
 //      End Buy Select Size Menue
 
- //     Fill Menue
+//     Fill Menue  ( water , milk , coffee , cups )
         fillPanel1 = new JPanel();
         fillPanel2 = new JPanel();
         fillPanel3 = new JPanel();
-        JLabel textlabel1 = new JLabel();
-        JLabel textlabel2 = new JLabel();
-        JLabel textlabel3 = new JLabel();
-        JLabel textlabel4 = new JLabel();
+        JTextField textField1 = new JTextField();
+        JTextField textField2 = new JTextField();
+        JTextField textField3 = new JTextField();
+        JLabel textlabel1 = new JLabel("water / ml : ");
+        JLabel textlabel2 = new JLabel("milk / ml : ");
+        JLabel textlabel3 = new JLabel("coffee / grams : ");
+        JLabel textlabel4 = new JLabel("disposable cups : ");
  //     End Fill
 
 
