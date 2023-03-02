@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.io.File;
 
 public class CoffeeMachineGUI extends JFrame {
     private int checklatte;
@@ -30,11 +31,15 @@ public class CoffeeMachineGUI extends JFrame {
 //        JLabel S = new JLabel( new ImageIcon(((new ImageIcon("S.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
 //        JLabel M = new JLabel( new ImageIcon(((new ImageIcon("M.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
 //        JLabel L = new JLabel( new ImageIcon(((new ImageIcon("L.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-        
-        JLabel latte = new JLabel( new ImageIcon(((new ImageIcon("latte.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-        JLabel capu = new JLabel( new ImageIcon(((new ImageIcon("Cappuccino.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-        JLabel esp = new JLabel( new ImageIcon(((new ImageIcon("espresso.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-        ImageIcon icon = new ImageIcon(((new ImageIcon("tur.png").getImage()).getScaledInstance( 70, 70, java.awt.Image.SCALE_SMOOTH)));
+        File latteFile = new File("latte.png");
+        File CapuccinoFile = new File("Capuccino.png");
+        File espressoFile = new File("Espresso.png");
+        File turFile = new File("tur.png");
+
+        JLabel latte = new JLabel( new ImageIcon(((new ImageIcon(latteFile.getAbsolutePath())).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+        JLabel capu = new JLabel( new ImageIcon(((new ImageIcon(CapuccinoFile.getAbsolutePath())).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+        JLabel esp = new JLabel( new ImageIcon(((new ImageIcon(espressoFile.getAbsolutePath())).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+        ImageIcon icon = new ImageIcon(((new ImageIcon(turFile.getAbsolutePath()).getImage()).getScaledInstance( 70, 70, java.awt.Image.SCALE_SMOOTH)));
         JLabel label = new JLabel("TAOJOM", icon,JLabel.CENTER);
 
 
@@ -96,7 +101,8 @@ public class CoffeeMachineGUI extends JFrame {
 //        set imageicon to jbutton
         JButton sizeS = new JButton();
 
-        ImageIcon S = new ImageIcon("S.png");
+        File sFile = new File("S.png");
+        ImageIcon S = new ImageIcon(sFile.getAbsolutePath());
         Image sSizePicture = S.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
         S.setImage(sSizePicture);
         sizeS.setIcon(S);
@@ -133,7 +139,8 @@ public class CoffeeMachineGUI extends JFrame {
         // add button sizeM
         JButton sizeM = new JButton();
 
-        ImageIcon M = new ImageIcon("M.png");
+        File mFile = new File("M.png");
+        ImageIcon M = new ImageIcon(mFile.getAbsolutePath());
         Image mSizePicture = M.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
         M.setImage(mSizePicture);
         sizeM.setIcon(M);
@@ -171,7 +178,8 @@ public class CoffeeMachineGUI extends JFrame {
         //add button sizeL
         JButton sizeL = new JButton();
 
-        ImageIcon L = new ImageIcon("L.png");
+        File lFile = new File("L.png");
+        ImageIcon L = new ImageIcon(lFile.getAbsolutePath());
         Image lSizePicture = L.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
         L.setImage(lSizePicture);
         sizeL.setIcon(L);
