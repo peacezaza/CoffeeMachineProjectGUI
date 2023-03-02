@@ -1,7 +1,10 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+
 public class CoffeeMachineGUI extends JFrame {
     private int checklatte;
     private int checkkapu;
@@ -9,10 +12,11 @@ public class CoffeeMachineGUI extends JFrame {
     private JPanel MainPanel1,MainPanel2,MainPanel3, MainPanel4,fillPanel1,fillPanel2,fillPanel3;
     private JButton button1,button2,backButton;
     private JCheckBox check1, check2, check3;
+    Container c = getContentPane();
     public CoffeeMachineGUI(){
         //GUI Setup
         super("CoffeeMachine");
-        Container c = getContentPane();
+//        Container c = getContentPane();
         //main statement
         Color color = new Color(226,218,196,255);
         MainPanel1 = new JPanel();
@@ -23,13 +27,14 @@ public class CoffeeMachineGUI extends JFrame {
         //Panel 2 Choose Coffee
 
         /* All Image */
-        JLabel S = new JLabel( new ImageIcon(((new ImageIcon("/Users/wiritipon/IdeaProjects/JavaLearnV2/src/S.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-        JLabel M = new JLabel( new ImageIcon(((new ImageIcon("/Users/wiritipon/IdeaProjects/JavaLearnV2/src/M.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-        JLabel L = new JLabel( new ImageIcon(((new ImageIcon("/Users/wiritipon/IdeaProjects/JavaLearnV2/src/L.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-        JLabel latte = new JLabel( new ImageIcon(((new ImageIcon("/Users/wiritipon/IdeaProjects/JavaLearnV2/src/latte.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-        JLabel capu = new JLabel( new ImageIcon(((new ImageIcon("/Users/wiritipon/IdeaProjects/JavaLearnV2/src/cappuccino.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-        JLabel esp = new JLabel( new ImageIcon(((new ImageIcon("/Users/wiritipon/IdeaProjects/JavaLearnV2/src/espresso.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-        ImageIcon icon = new ImageIcon(((new ImageIcon("/Users/wiritipon/IdeaProjects/JavaLearnV2/src/tur.png").getImage()).getScaledInstance( 70, 70, java.awt.Image.SCALE_SMOOTH)));
+//        JLabel S = new JLabel( new ImageIcon(((new ImageIcon("S.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+//        JLabel M = new JLabel( new ImageIcon(((new ImageIcon("M.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+//        JLabel L = new JLabel( new ImageIcon(((new ImageIcon("L.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+        
+        JLabel latte = new JLabel( new ImageIcon(((new ImageIcon("latte.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+        JLabel capu = new JLabel( new ImageIcon(((new ImageIcon("Cappuccino.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+        JLabel esp = new JLabel( new ImageIcon(((new ImageIcon("espresso.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+        ImageIcon icon = new ImageIcon(((new ImageIcon("tur.png").getImage()).getScaledInstance( 70, 70, java.awt.Image.SCALE_SMOOTH)));
         JLabel label = new JLabel("TAOJOM", icon,JLabel.CENTER);
 
 
@@ -87,20 +92,137 @@ public class CoffeeMachineGUI extends JFrame {
         JPanel SizePanel3 = new JPanel();
         SizePanel1.setBackground(color);
 
+
+//        set imageicon to jbutton
+        JButton sizeS = new JButton();
+
+        ImageIcon S = new ImageIcon("S.png");
+        Image sSizePicture = S.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        S.setImage(sSizePicture);
+        sizeS.setIcon(S);
+        sizeS.setBackground(color);
+        Border emptyBorder = BorderFactory.createEmptyBorder();
+        sizeS.setBorder(emptyBorder);
+
+        sizeS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                JButton j = (JButton) e.getSource();
+                j.setBackground(new Color(228, 210, 159, 255));
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                sizeS.setContentAreaFilled(false);
+                sizeS.setOpaque(true);
+                sizeS.setBackground(new Color(234, 202, 113, 255));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                sizeS.setContentAreaFilled(true);
+                sizeS.setBackground(new Color(234, 202, 113, 255));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent e) {
+
+                JButton j = (JButton) e.getSource();
+                j.setBackground(color);
+            }
+
+        });
+        // add button sizeM
+        JButton sizeM = new JButton();
+
+        ImageIcon M = new ImageIcon("M.png");
+        Image mSizePicture = M.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        M.setImage(mSizePicture);
+        sizeM.setIcon(M);
+        sizeM.setBackground(color);
+//        Border emptyBorder = BorderFactory.createEmptyBorder();
+        sizeM.setBorder(emptyBorder);
+
+        sizeM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                JButton j = (JButton) e.getSource();
+                j.setBackground(new Color(228, 210, 159, 255));
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                sizeM.setContentAreaFilled(false);
+                sizeM.setOpaque(true);
+                sizeM.setBackground(new Color(234, 202, 113, 255));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                sizeM.setContentAreaFilled(true);
+                sizeM.setBackground(new Color(228, 210, 159, 255));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent e) {
+
+                JButton j = (JButton) e.getSource();
+                j.setBackground(color);
+            }
+
+        });
+
+        //add button sizeL
+        JButton sizeL = new JButton();
+
+        ImageIcon L = new ImageIcon("L.png");
+        Image lSizePicture = L.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        L.setImage(lSizePicture);
+        sizeL.setIcon(L);
+        sizeL.setBackground(color);
+//        Border emptyBorder = BorderFactory.createEmptyBorder();
+        sizeL.setBorder(emptyBorder);
+
+        sizeL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                JButton j = (JButton) e.getSource();
+                j.setBackground(new Color(228, 210, 159, 255));
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                sizeL.setContentAreaFilled(false);
+                sizeL.setOpaque(true);
+                sizeL.setBackground(new Color(234, 202, 113, 255));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                sizeL.setContentAreaFilled(true);
+                sizeL.setBackground(new Color(228, 210, 159, 255));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent e) {
+
+                JButton j = (JButton) e.getSource();
+                j.setBackground(color);
+            }
+
+        });
+
         //image Size
-        SizePanel1.add(S);
-        SizePanel1.add(M);
-        SizePanel1.add(L);
+        SizePanel1.add(sizeS);
+        SizePanel1.add(sizeM);
+        SizePanel1.add(sizeL);
 //      End Buy Select Size Menue
 
- //     Fill Menue
+//     Fill Menue  ( water , milk , coffee , cups )
         fillPanel1 = new JPanel();
         fillPanel2 = new JPanel();
         fillPanel3 = new JPanel();
-        JLabel textlabel1 = new JLabel();
-        JLabel textlabel2 = new JLabel();
-        JLabel textlabel3 = new JLabel();
-        JLabel textlabel4 = new JLabel();
+        JTextField textField1 = new JTextField();
+        JTextField textField2 = new JTextField();
+        JTextField textField3 = new JTextField();
+        JLabel textlabel1 = new JLabel("water / ml : ");
+        JLabel textlabel2 = new JLabel("milk / ml : ");
+        JLabel textlabel3 = new JLabel("coffee / grams : ");
+        JLabel textlabel4 = new JLabel("disposable cups : ");
  //     End Fill
 
 
@@ -149,7 +271,7 @@ public class CoffeeMachineGUI extends JFrame {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(check1.isSelected() || check2.isSelected() || !check3.isSelected()){
+                if(check1.isSelected() || check2.isSelected() || check3.isSelected()){
                     MainPanel1.setVisible(false);
                     MainPanel2.setVisible(false);
                     MainPanel3.setVisible(false);
@@ -167,6 +289,7 @@ public class CoffeeMachineGUI extends JFrame {
                     String coffee = "LATTE";
                     c.add(SizePanel1);
                     backButton.setVisible(true);
+                    buyCoffee();
 
 
                 }
@@ -206,5 +329,10 @@ public class CoffeeMachineGUI extends JFrame {
         setResizable(false);
         setVisible(true);
     }
+
+    public void buyCoffee(){
+
+    }
+
     public static void main(String[] args) {new CoffeeMachineGUI();}
 }
