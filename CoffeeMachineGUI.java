@@ -1,7 +1,10 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+
 public class CoffeeMachineGUI extends JFrame {
     private int checklatte;
     private int checkkapu;
@@ -25,8 +28,9 @@ public class CoffeeMachineGUI extends JFrame {
 
         /* All Image */
 //        JLabel S = new JLabel( new ImageIcon(((new ImageIcon("S.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-        JLabel M = new JLabel( new ImageIcon(((new ImageIcon("M.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-        JLabel L = new JLabel( new ImageIcon(((new ImageIcon("L.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+//        JLabel M = new JLabel( new ImageIcon(((new ImageIcon("M.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+//        JLabel L = new JLabel( new ImageIcon(((new ImageIcon("L.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+        
         JLabel latte = new JLabel( new ImageIcon(((new ImageIcon("latte.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
         JLabel capu = new JLabel( new ImageIcon(((new ImageIcon("Cappuccino.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
         JLabel esp = new JLabel( new ImageIcon(((new ImageIcon("espresso.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
@@ -97,21 +101,115 @@ public class CoffeeMachineGUI extends JFrame {
         S.setImage(sSizePicture);
         sizeS.setIcon(S);
         sizeS.setBackground(color);
+        Border emptyBorder = BorderFactory.createEmptyBorder();
+        sizeS.setBorder(emptyBorder);
+
         sizeS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent e) {
                 JButton j = (JButton) e.getSource();
-                j.setBackground(new Color(226,218,196,255));
+                j.setBackground(new Color(228, 210, 159, 255));
             }
-//            public void mouseExited(java.awt.event.MouseEvent e) {
-//                JButton j = (JButton) e.getSource();
-//                j.setBackground(Color.GREEN);
-//            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                sizeS.setContentAreaFilled(false);
+                sizeS.setOpaque(true);
+                sizeS.setBackground(new Color(234, 202, 113, 255));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                sizeS.setContentAreaFilled(true);
+                sizeS.setBackground(new Color(234, 202, 113, 255));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent e) {
+
+                JButton j = (JButton) e.getSource();
+                j.setBackground(color);
+            }
+
+        });
+        // add button sizeM
+        JButton sizeM = new JButton();
+
+        ImageIcon M = new ImageIcon("M.png");
+        Image mSizePicture = M.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        M.setImage(mSizePicture);
+        sizeM.setIcon(M);
+        sizeM.setBackground(color);
+//        Border emptyBorder = BorderFactory.createEmptyBorder();
+        sizeM.setBorder(emptyBorder);
+
+        sizeM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                JButton j = (JButton) e.getSource();
+                j.setBackground(new Color(228, 210, 159, 255));
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                sizeM.setContentAreaFilled(false);
+                sizeM.setOpaque(true);
+                sizeM.setBackground(new Color(234, 202, 113, 255));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                sizeM.setContentAreaFilled(true);
+                sizeM.setBackground(new Color(228, 210, 159, 255));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent e) {
+
+                JButton j = (JButton) e.getSource();
+                j.setBackground(color);
+            }
+
+        });
+
+        //add button sizeL
+        JButton sizeL = new JButton();
+
+        ImageIcon L = new ImageIcon("L.png");
+        Image lSizePicture = L.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+        L.setImage(lSizePicture);
+        sizeL.setIcon(L);
+        sizeL.setBackground(color);
+//        Border emptyBorder = BorderFactory.createEmptyBorder();
+        sizeL.setBorder(emptyBorder);
+
+        sizeL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                JButton j = (JButton) e.getSource();
+                j.setBackground(new Color(228, 210, 159, 255));
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                sizeL.setContentAreaFilled(false);
+                sizeL.setOpaque(true);
+                sizeL.setBackground(new Color(234, 202, 113, 255));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                sizeL.setContentAreaFilled(true);
+                sizeL.setBackground(new Color(228, 210, 159, 255));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent e) {
+
+                JButton j = (JButton) e.getSource();
+                j.setBackground(color);
+            }
+
         });
 
         //image Size
         SizePanel1.add(sizeS);
-        SizePanel1.add(M);
-        SizePanel1.add(L);
+        SizePanel1.add(sizeM);
+        SizePanel1.add(sizeL);
 //      End Buy Select Size Menue
 
  //     Fill Menue
