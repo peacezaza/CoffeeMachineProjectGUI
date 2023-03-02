@@ -140,6 +140,7 @@ public class CoffeeMachineGUI extends JFrame {
         JButton sizeM = new JButton();
 
         File mFile = new File("M.png");
+//        ddd
         ImageIcon M = new ImageIcon(mFile.getAbsolutePath());
         Image mSizePicture = M.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
         M.setImage(mSizePicture);
