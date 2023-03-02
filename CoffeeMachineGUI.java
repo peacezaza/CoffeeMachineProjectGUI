@@ -9,10 +9,11 @@ public class CoffeeMachineGUI extends JFrame {
     private JPanel MainPanel1,MainPanel2,MainPanel3, MainPanel4,fillPanel1,fillPanel2,fillPanel3;
     private JButton button1,button2,backButton;
     private JCheckBox check1, check2, check3;
+    Container c = getContentPane();
     public CoffeeMachineGUI(){
         //GUI Setup
         super("CoffeeMachine");
-        Container c = getContentPane();
+//        Container c = getContentPane();
         //main statement
         Color color = new Color(226,218,196,255);
         MainPanel1 = new JPanel();
@@ -23,7 +24,7 @@ public class CoffeeMachineGUI extends JFrame {
         //Panel 2 Choose Coffee
 
         /* All Image */
-        JLabel S = new JLabel( new ImageIcon(((new ImageIcon("S.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+//        JLabel S = new JLabel( new ImageIcon(((new ImageIcon("S.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
         JLabel M = new JLabel( new ImageIcon(((new ImageIcon("M.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
         JLabel L = new JLabel( new ImageIcon(((new ImageIcon("L.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
         JLabel latte = new JLabel( new ImageIcon(((new ImageIcon("latte.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
@@ -87,8 +88,15 @@ public class CoffeeMachineGUI extends JFrame {
         JPanel SizePanel3 = new JPanel();
         SizePanel1.setBackground(color);
 
+
+//        set imageicon to jbutton
+        JButton sizeS = new JButton();
+//        ImageIcon S = new ImageIcon("S.png");
+        sizeS.setIcon(new ImageIcon("S.png"));
+        sizeS.setSize(100, 100);
+
         //image Size
-        SizePanel1.add(S);
+        SizePanel1.add(sizeS);
         SizePanel1.add(M);
         SizePanel1.add(L);
 //      End Buy Select Size Menue
