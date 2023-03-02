@@ -23,13 +23,13 @@ public class CoffeeMachineGUI extends JFrame {
         //Panel 2 Choose Coffee
 
         /* All Image */
-        JLabel S = new JLabel( new ImageIcon(((new ImageIcon("/Users/wiritipon/IdeaProjects/JavaLearnV2/src/S.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-        JLabel M = new JLabel( new ImageIcon(((new ImageIcon("/Users/wiritipon/IdeaProjects/JavaLearnV2/src/M.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-        JLabel L = new JLabel( new ImageIcon(((new ImageIcon("/Users/wiritipon/IdeaProjects/JavaLearnV2/src/L.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-        JLabel latte = new JLabel( new ImageIcon(((new ImageIcon("/Users/wiritipon/IdeaProjects/JavaLearnV2/src/latte.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-        JLabel capu = new JLabel( new ImageIcon(((new ImageIcon("/Users/wiritipon/IdeaProjects/JavaLearnV2/src/cappuccino.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-        JLabel esp = new JLabel( new ImageIcon(((new ImageIcon("/Users/wiritipon/IdeaProjects/JavaLearnV2/src/espresso.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-        ImageIcon icon = new ImageIcon(((new ImageIcon("/Users/wiritipon/IdeaProjects/JavaLearnV2/src/tur.png").getImage()).getScaledInstance( 70, 70, java.awt.Image.SCALE_SMOOTH)));
+        JLabel S = new JLabel( new ImageIcon(((new ImageIcon("S.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+        JLabel M = new JLabel( new ImageIcon(((new ImageIcon("M.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+        JLabel L = new JLabel( new ImageIcon(((new ImageIcon("L.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+        JLabel latte = new JLabel( new ImageIcon(((new ImageIcon("latte.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+        JLabel capu = new JLabel( new ImageIcon(((new ImageIcon("Cappuccino.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+        JLabel esp = new JLabel( new ImageIcon(((new ImageIcon("espresso.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
+        ImageIcon icon = new ImageIcon(((new ImageIcon("tur.png").getImage()).getScaledInstance( 70, 70, java.awt.Image.SCALE_SMOOTH)));
         JLabel label = new JLabel("TAOJOM", icon,JLabel.CENTER);
 
 
@@ -149,7 +149,7 @@ public class CoffeeMachineGUI extends JFrame {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(check1.isSelected() || check2.isSelected() || !check3.isSelected()){
+                if(check1.isSelected() || check2.isSelected() || check3.isSelected()){
                     MainPanel1.setVisible(false);
                     MainPanel2.setVisible(false);
                     MainPanel3.setVisible(false);
@@ -167,6 +167,7 @@ public class CoffeeMachineGUI extends JFrame {
                     String coffee = "LATTE";
                     c.add(SizePanel1);
                     backButton.setVisible(true);
+                    buyCoffee();
 
 
                 }
@@ -206,5 +207,10 @@ public class CoffeeMachineGUI extends JFrame {
         setResizable(false);
         setVisible(true);
     }
+
+    public void buyCoffee(){
+
+    }
+
     public static void main(String[] args) {new CoffeeMachineGUI();}
 }
