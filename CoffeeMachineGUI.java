@@ -31,7 +31,7 @@ public class CoffeeMachineGUI extends JFrame {
     private int checklatte;
     private int checkkapu;
     private int checkexpresso;
-    private JPanel MainPanel1,MainPanel2,MainPanel3, MainPanel4,fillPanel1,fillPanel2,fillPanel3;
+    private JPanel MainPanel1,MainPanel2,MainPanel3, MainPanel4,BackPanel,fillPanel1,fillPanel2,fillPanel3;
     private JButton button1,button2,backButton;
     private JCheckBox check1, check2, check3;
 
@@ -46,6 +46,7 @@ public class CoffeeMachineGUI extends JFrame {
         MainPanel2 = new JPanel();
         MainPanel3 = new JPanel();
         MainPanel4 = new JPanel();
+        BackPanel = new JPanel();
         c.setLayout(new FlowLayout(FlowLayout.CENTER,20,20));
         //Panel 2 Choose Coffee
 
@@ -63,7 +64,7 @@ public class CoffeeMachineGUI extends JFrame {
         JLabel esp = new JLabel( new ImageIcon(((new ImageIcon(espressoFile.getAbsolutePath())).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
         ImageIcon icon = new ImageIcon(((new ImageIcon(turFile.getAbsolutePath()).getImage()).getScaledInstance( 60, 60, java.awt.Image.SCALE_SMOOTH)));
         JLabel label = new JLabel(icon,JLabel.CENTER);
-        JLabel label1 = new JLabel();
+        JLabel label1 = new JLabel("TAOJOM");
 
 
 //        Create types of coffee label add them to the Jlabel Object
@@ -71,12 +72,17 @@ public class CoffeeMachineGUI extends JFrame {
         backButton = new JButton("Back");
         backButton.setHorizontalAlignment(SwingConstants.LEFT);
         backButton.setVisible(false);
-        MainPanel4.add(backButton);
+        BackPanel.setVisible(false);
+        MainPanel4.setLayout(new BoxLayout(MainPanel4, BoxLayout.Y_AXIS));
+        BackPanel.add(backButton);
         MainPanel4.add(label);
+        MainPanel4.add(label1);
         MainPanel1.setBackground(color);
         MainPanel2.setBackground(color);
         MainPanel4.setBackground(color);
+        BackPanel.setBackground(color);
         c.setBackground(color);
+        c.add(BackPanel);
         c.add(MainPanel4);
 
 //       add Pictures and back button to container
@@ -107,6 +113,17 @@ public class CoffeeMachineGUI extends JFrame {
         //Buy Select Size Menue
         JPanel SizePanel1 = new JPanel();
         SizePanel1.setBackground(color);
+        //Show Label Menue
+        JPanel Showingredient = new JPanel();
+        JLabel typetext = new JLabel("CAPACAPCAP");
+        JLabel watertext = new JLabel("Water Use: ");
+        JLabel milktext = new JLabel("Milk Use: ");
+        JLabel coffeetext = new JLabel("Coffee Use: ");
+        JLabel cupstext = new JLabel("Cups Use: ");
+        Showingredient.add(typetext);
+        Showingredient.setVisible(false);
+        c.add(Showingredient);
+
 
         backButton.addActionListener(new ActionListener() {
             @Override
@@ -115,6 +132,9 @@ public class CoffeeMachineGUI extends JFrame {
                 MainPanel2.setVisible(true);
                 MainPanel3.setVisible(true);
                 backButton.setVisible(false);
+                BackPanel.setVisible(false);
+                Showingredient.setVisible(false);
+
             }
         });
         //Event Handle
@@ -169,6 +189,7 @@ public class CoffeeMachineGUI extends JFrame {
                 else if(check1.isSelected() ){
 //                    JOptionPane.showMessageDialog(null,"Buy LATTE Successful!");
                     backButton.setVisible(true);
+                    BackPanel.setVisible(true);
                     SizePanel1.setVisible(true);
 
 
@@ -176,16 +197,16 @@ public class CoffeeMachineGUI extends JFrame {
                 //User choose check2
                 else if(check2.isSelected()){
 //                    JOptionPane.showMessageDialog(null,"Buy CAPPUCCINO Successful!");
-
                     backButton.setVisible(true);
+                    BackPanel.setVisible(true);
                     SizePanel1.setVisible(true);
 
                 }
                 //User choose check3
                 else if (check3.isSelected()) {
 //                    JOptionPane.showMessageDialog(null,"Buy ESPRESSO Successful!");
-
                     backButton.setVisible(true);
+                    BackPanel.setVisible(true);
                     SizePanel1.setVisible(true);
                 }
             }
@@ -202,16 +223,7 @@ public class CoffeeMachineGUI extends JFrame {
             }
         });
 
-        //Show Label Menue
-        JPanel Showingredient = new JPanel();
-        JLabel typetext = new JLabel("CAPACAPCAP");
-        JLabel watertext = new JLabel("Water Use: ");
-        JLabel milktext = new JLabel("Milk Use: ");
-        JLabel coffeetext = new JLabel("Coffee Use: ");
-        JLabel cupstext = new JLabel("Cups Use: ");
-        Showingredient.add(typetext);
-        c.add(Showingredient);
-        Showingredient.setVisible(false);
+
 
 
 //        set imageicon to Jbutton
