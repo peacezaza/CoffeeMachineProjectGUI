@@ -31,8 +31,8 @@ public class CoffeeMachineGUI extends JFrame {
 //        JLabel S = new JLabel( new ImageIcon(((new ImageIcon("S.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
 //        JLabel M = new JLabel( new ImageIcon(((new ImageIcon("M.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
 //        JLabel L = new JLabel( new ImageIcon(((new ImageIcon("L.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-        File latteFile = new File("latte.png");
-        File CapuccinoFile = new File("Capuccino.png");
+        File latteFile = new File("Latte.png");
+        File CapuccinoFile = new File("Cappuccino.png");
         File espressoFile = new File("Espresso.png");
         File turFile = new File("tur.png");
 
