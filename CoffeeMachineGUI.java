@@ -19,6 +19,7 @@ public class CoffeeMachineGUI extends JFrame {
     static final int CAPPUCCINO_MILK_ML_PER_CUP = 100;
     static final int CAPPUCCINO_BEANS_G_PER_CUP = 12;
     static final int CAPPUCCINO_PRICE = 6;
+    int count = 0;
     private int water;
     private int milk;
     private int beans;
@@ -58,7 +59,6 @@ public class CoffeeMachineGUI extends JFrame {
         File CapuccinoFile = new File("cap.png");
         File espressoFile = new File("es.png");
         File turFile = new File("t.png");
-        System.out.println(latteFile.getAbsolutePath());
         JLabel latte = new JLabel( new ImageIcon(((new ImageIcon(latteFile.getAbsolutePath())).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
         JLabel capu = new JLabel( new ImageIcon(((new ImageIcon(CapuccinoFile.getAbsolutePath())).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
         JLabel esp = new JLabel( new ImageIcon(((new ImageIcon(espressoFile.getAbsolutePath())).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
@@ -70,19 +70,19 @@ public class CoffeeMachineGUI extends JFrame {
 //        Create types of coffee label add them to the Jlabel Object
 
         backButton = new JButton("Back");
-        backButton.setHorizontalAlignment(SwingConstants.LEFT);
+//        backButton.setHorizontalAlignment(SwingConstants.LEFT);
         backButton.setVisible(false);
         BackPanel.setVisible(false);
         MainPanel4.setLayout(new BoxLayout(MainPanel4, BoxLayout.Y_AXIS));
         BackPanel.add(backButton);
+        BackPanel.setBounds(0,0,0,0);
         MainPanel4.add(label);
         MainPanel4.add(label1);
         MainPanel1.setBackground(color);
         MainPanel2.setBackground(color);
         MainPanel4.setBackground(color);
-        BackPanel.setBackground(color);
+//        BackPanel.setBackground(color);
         c.setBackground(color);
-        c.add(BackPanel);
         c.add(MainPanel4);
 
 //       add Pictures and back button to container
@@ -115,12 +115,10 @@ public class CoffeeMachineGUI extends JFrame {
         SizePanel1.setBackground(color);
         //Show Label Menue
         JPanel Showingredient = new JPanel();
-        JLabel typetext = new JLabel("CAPACAPCAP");
         JLabel watertext = new JLabel("Water Use: ");
         JLabel milktext = new JLabel("Milk Use: ");
         JLabel coffeetext = new JLabel("Coffee Use: ");
         JLabel cupstext = new JLabel("Cups Use: ");
-        Showingredient.add(typetext);
         Showingredient.setVisible(false);
         c.add(Showingredient);
 
@@ -224,10 +222,10 @@ public class CoffeeMachineGUI extends JFrame {
         });
 
 
-
-
 //        set imageicon to Jbutton
         JButton sizeS = new JButton();
+        JButton sizeL = new JButton();
+        JButton sizeM = new JButton();
         File sFile = new File("S.png");
         ImageIcon S = new ImageIcon(sFile.getAbsolutePath());
         Image sSizePicture = S.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
@@ -237,36 +235,47 @@ public class CoffeeMachineGUI extends JFrame {
         Border emptyBorder = BorderFactory.createEmptyBorder();
         sizeS.setBorder(emptyBorder);
         sizeS.addMouseListener(new java.awt.event.MouseAdapter() {
+
             public void mouseEntered(java.awt.event.MouseEvent e) {
                 JButton j = (JButton) e.getSource();
                 j.setBackground(new Color(228, 210, 159, 255));
             }
+
             @Override
             public void mousePressed(MouseEvent e) {
                 sizeS.setContentAreaFilled(false);
                 sizeS.setOpaque(true);
                 sizeS.setBackground(new Color(234, 202, 113, 255));
             }
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                sizeS.setContentAreaFilled(true);
-                sizeS.setBackground(new Color(234, 202, 113, 255));
-            }
+
+//            @Override
+//            public void mouseReleased(MouseEvent e) {
+//                sizeS.setContentAreaFilled(true);
+//                sizeS.setBackground(new Color(228, 210, 159, 255));
+//            }
             @Override
             public void mouseExited(java.awt.event.MouseEvent e) {
                 JButton j = (JButton) e.getSource();
-                j.setBackground(color);
+                sizeM.setBackground(color);
+                sizeL.setBackground(color);
+                if(count >= 1 ){
+                    sizeS.setBackground(new Color(234, 202, 113, 255));
+                }else {
+                    sizeS.setBackground(color);
+                }
+                count = 0;
             }
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                count += 1;
+                sizeS.setBackground(new Color(234, 202, 113, 255));
+                sizeM.setBackground(color);
+                sizeL.setBackground(color);
                 setCoffeeSize("S");
-                Showingredient.setVisible(true);
-                SizePanel1.setVisible(false);
             }
         });
         // add button sizeM
-        JButton sizeM = new JButton();
         File mFile = new File("M.png");
         ImageIcon M = new ImageIcon(mFile.getAbsolutePath());
         Image mSizePicture = M.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
@@ -289,28 +298,36 @@ public class CoffeeMachineGUI extends JFrame {
                 sizeM.setBackground(new Color(234, 202, 113, 255));
             }
 
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                sizeM.setContentAreaFilled(true);
-                sizeM.setBackground(new Color(228, 210, 159, 255));
-            }
+//            @Override
+//            public void mouseReleased(MouseEvent e) {
+//                sizeM.setContentAreaFilled(true);
+//                sizeM.setBackground(new Color(228, 210, 159, 255));
+//            }
             @Override
             public void mouseExited(java.awt.event.MouseEvent e) {
-
                 JButton j = (JButton) e.getSource();
-                j.setBackground(color);
+                sizeS.setBackground(color);
+                sizeL.setBackground(color);
+                if(count >= 1){
+                    sizeM.setBackground(new Color(234, 202, 113, 255));
+                }else {
+                    sizeM.setBackground(color);
+                }
+                count = 0;
             }
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                count += 1;
+                sizeS.setBackground(color);
+                sizeM.setBackground(new Color(234, 202, 113, 255));
+                sizeL.setBackground(color);
                 setCoffeeSize("M");
-                SizePanel1.setVisible(false);
             }
 
         });
 
         //add button sizeL
-        JButton sizeL = new JButton();
         File lFile = new File("L.png");
         ImageIcon L = new ImageIcon(lFile.getAbsolutePath());
         Image lSizePicture = L.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
@@ -333,22 +350,31 @@ public class CoffeeMachineGUI extends JFrame {
                 sizeL.setBackground(new Color(234, 202, 113, 255));
             }
 
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                sizeL.setContentAreaFilled(true);
-                sizeL.setBackground(new Color(228, 210, 159, 255));
-            }
+//            @Override
+//            public void mouseReleased(MouseEvent e) {
+//                sizeL.setContentAreaFilled(true);
+//                sizeL.setBackground(new Color(228, 210, 159, 255));
+//            }
             @Override
             public void mouseExited(java.awt.event.MouseEvent e) {
-
                 JButton j = (JButton) e.getSource();
-                j.setBackground(color);
+                sizeS.setBackground(color);
+                sizeM.setBackground(color);
+                if(count >= 1 ){
+                    sizeL.setBackground(new Color(234, 202, 113, 255));
+                }else {
+                    sizeL.setBackground(color);
+                }
+                count = 0;
             }
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                count += 1;
+                sizeS.setBackground(color);
+                sizeM.setBackground(color);
+                sizeL.setBackground(new Color(234, 202, 113, 255));
                 setCoffeeSize("L");
-                SizePanel1.setVisible(false);
             }
 
         });
@@ -359,6 +385,7 @@ public class CoffeeMachineGUI extends JFrame {
         SizePanel1.add(sizeM);
         SizePanel1.add(sizeL);
         c.add(SizePanel1);
+        c.add(BackPanel);
 //      End Buy Select Size Menue
 
 //     Fill Menue  ( water , milk , coffee , cups )
