@@ -20,11 +20,13 @@ public class CoffeeMachineGUI extends JFrame {
     static final int CAPPUCCINO_BEANS_G_PER_CUP = 12;
     static final int CAPPUCCINO_PRICE = 6;
     private int count = 0;
+    private int sizecount =0;
     private int water = 1000;
     private int milk = 500;
     private int beans= 300;
     private int cups = 30;
     private int cash;
+    private float sizeprice;
     private float price;
     private String coffee;
     private String coffeeSize;
@@ -110,6 +112,10 @@ public class CoffeeMachineGUI extends JFrame {
         //Buy Select Size Menue
         JPanel SizePanel1 = new JPanel();
         SizePanel1.setBackground(color);
+        //Size Coffee
+        JButton sizeS = new JButton();
+        JButton sizeL = new JButton();
+        JButton sizeM = new JButton();
         //Show Label Menue
         JPanel priceMain = new JPanel();
         JPanel priceShow = new JPanel();
@@ -118,7 +124,7 @@ public class CoffeeMachineGUI extends JFrame {
         priceMain.setLayout(new BoxLayout(priceMain ,BoxLayout.X_AXIS));
         JButton buyButton = new JButton("BUY");
         JLabel priceText = new JLabel("Price");
-        JLabel price = new JLabel("฿ " + getPrice() );
+        JLabel price = new JLabel("฿ " + getPrice());
         priceShow.add(priceText);
         priceShow.add(Box.createRigidArea(new Dimension(0,15)));
         priceShow.add(price);
@@ -135,7 +141,12 @@ public class CoffeeMachineGUI extends JFrame {
                 MainPanel3.setVisible(true);
                 backButton.setVisible(false);
                 BackPanel.setVisible(false);
-
+                sizeS.setBackground(color);
+                sizeM.setBackground(color);
+                sizeL.setBackground(color);
+                setSizePrice(0);
+                setPrice(0);
+                sizecount = 0;
             }
         });
         //Event Handle
@@ -147,6 +158,7 @@ public class CoffeeMachineGUI extends JFrame {
                     check3.setSelected(false);
                     setCoffee("LATTE");
                     setPrice(45);
+                    price.setText("฿ " + getPrice() );
                 }
             }
         });
@@ -158,6 +170,7 @@ public class CoffeeMachineGUI extends JFrame {
                     check3.setSelected(false);
                     setCoffee("CAPPUCCINO");
                     setPrice(50);
+                    price.setText("฿ " + getPrice() );
                 }
             }
         });
@@ -168,7 +181,8 @@ public class CoffeeMachineGUI extends JFrame {
                     check1.setSelected(false);
                     check2.setSelected(false);
                     setCoffee("ESPRESSO");
-                    setPrice(55);
+                    setPrice(60);
+                    price.setText("฿ " + getPrice() );
                 }
             }
         });
@@ -183,7 +197,7 @@ public class CoffeeMachineGUI extends JFrame {
                 }
                 //User not Choose
                 if(!check1.isSelected() && !check2.isSelected() && !check3.isSelected()){
-                    JOptionPane.showMessageDialog(null,"Please Choose Coffee!");
+//                    JOptionPane.showMessageDialog(null,"Please Choose Coffee!");
                     MainPanel1.setVisible(true);
                     MainPanel2.setVisible(true);
                     MainPanel3.setVisible(true);
@@ -195,7 +209,6 @@ public class CoffeeMachineGUI extends JFrame {
                     BackPanel.setVisible(true);
                     SizePanel1.setVisible(true);
 
-
                 }
                 //User choose check2
                 else if(check2.isSelected()){
@@ -203,7 +216,6 @@ public class CoffeeMachineGUI extends JFrame {
                     backButton.setVisible(true);
                     BackPanel.setVisible(true);
                     SizePanel1.setVisible(true);
-
                 }
                 //User choose check3
                 else if (check3.isSelected()) {
@@ -223,14 +235,17 @@ public class CoffeeMachineGUI extends JFrame {
                 MainPanel2.setVisible(false);
                 MainPanel3.setVisible(false);
                 backButton.setVisible(true);
+                check1.setSelected(false);
+                check2.setSelected(false);
+                check3.setSelected(false);
+                setSizePrice(0);
+                setPrice(0);
+                sizecount = 0;
             }
         });
 
 
 //        set imageicon to Jbutton
-        JButton sizeS = new JButton();
-        JButton sizeL = new JButton();
-        JButton sizeM = new JButton();
         File sFile = new File("S.png");
         ImageIcon S = new ImageIcon(sFile.getAbsolutePath());
         Image sSizePicture = S.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
@@ -273,11 +288,18 @@ public class CoffeeMachineGUI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                if(sizecount == 1){
+                    setPrice(getPrice()-getSizePrice());
+                    sizecount = 0;
+                }
+                sizecount = 1;
                 count += 1;
                 sizeS.setBackground(new Color(234, 202, 113, 255));
                 sizeM.setBackground(color);
                 sizeL.setBackground(color);
                 setCoffeeSize("S");
+                setSizePrice(0);
+                price.setText("฿ " + getPrice());
             }
         });
         // add button sizeM
@@ -323,11 +345,19 @@ public class CoffeeMachineGUI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                if(sizecount == 1){
+                    setPrice(getPrice()-getSizePrice());
+                    sizecount = 0;
+                }
+                sizecount = 1;
                 count += 1;
                 sizeS.setBackground(color);
                 sizeM.setBackground(new Color(234, 202, 113, 255));
                 sizeL.setBackground(color);
                 setCoffeeSize("M");
+                setSizePrice(5);
+                setPrice(getPrice()+getSizePrice());
+                price.setText("฿ " + getPrice() );
             }
 
         });
@@ -375,11 +405,19 @@ public class CoffeeMachineGUI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                if(sizecount == 1){
+                    setPrice(getPrice()-getSizePrice());
+                    sizecount = 0;
+                }
+                sizecount = 1;
                 count += 1;
                 sizeS.setBackground(color);
                 sizeM.setBackground(color);
                 sizeL.setBackground(new Color(234, 202, 113, 255));
                 setCoffeeSize("L");
+                setSizePrice(10);
+                setPrice(getPrice()+getSizePrice());
+                price.setText("฿ " + getPrice() );
             }
 
         });
@@ -407,15 +445,17 @@ public class CoffeeMachineGUI extends JFrame {
         JLabel textlabel3 = new JLabel("coffee / grams : ");
         JLabel textlabel4 = new JLabel("disposable cups : ");
         //     End Fill
-
-
-
-
         setSize(350,400);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
+    }
+    public void setSizePrice(float size){
+        this.sizeprice = size;
+    }
+    public float getSizePrice(){
+        return this.sizeprice ;
     }
     public void setPrice(float price){
         this.price = price;
