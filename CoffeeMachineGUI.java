@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.io.File;
 public class CoffeeMachineGUI extends JFrame {
-//   Coffee ingredient
+    //   Coffee ingredient
     static final int ESPRESSO_WATER_ML_PER_CUP = 250;
     static final int ESPRESSO_MILK_ML_PER_CUP = 0;
     static final int ESPRESSO_BEANS_G_PER_CUP = 16;
@@ -19,19 +19,17 @@ public class CoffeeMachineGUI extends JFrame {
     static final int CAPPUCCINO_MILK_ML_PER_CUP = 100;
     static final int CAPPUCCINO_BEANS_G_PER_CUP = 12;
     static final int CAPPUCCINO_PRICE = 6;
-    int count = 0;
-    private int water;
-    private int milk;
-    private int beans;
-    private int cups;
+    private int count = 0;
+    private int water = 1000;
+    private int milk = 500;
+    private int beans= 300;
+    private int cups = 30;
     private int cash;
+    private float price;
     private String coffee;
     private String coffeeSize;
 
-//    Var GUI
-    private int checklatte;
-    private int checkkapu;
-    private int checkexpresso;
+    //    Var GUI
     private JPanel MainPanel1,MainPanel2,MainPanel3, MainPanel4,BackPanel,fillPanel1,fillPanel2,fillPanel3;
     private JButton button1,button2,backButton;
     private JCheckBox check1, check2, check3;
@@ -40,8 +38,7 @@ public class CoffeeMachineGUI extends JFrame {
     public CoffeeMachineGUI(){
         //GUI Setup
         super("CoffeeMachine");
-//        Container c = getContentPane();
-        //main statement
+//       main statement
         Color color = new Color(226,218,196,255);
         MainPanel1 = new JPanel();
         MainPanel2 = new JPanel();
@@ -114,14 +111,21 @@ public class CoffeeMachineGUI extends JFrame {
         JPanel SizePanel1 = new JPanel();
         SizePanel1.setBackground(color);
         //Show Label Menue
-        JPanel Showingredient = new JPanel();
-        JLabel watertext = new JLabel("Water Use: ");
-        JLabel milktext = new JLabel("Milk Use: ");
-        JLabel coffeetext = new JLabel("Coffee Use: ");
-        JLabel cupstext = new JLabel("Cups Use: ");
-        Showingredient.setVisible(false);
-        c.add(Showingredient);
-
+        JPanel priceMain = new JPanel();
+        JPanel priceShow = new JPanel();
+        JPanel buyCoffeeButton = new JPanel();
+        priceShow.setLayout(new BoxLayout(priceShow ,BoxLayout.Y_AXIS));
+        priceMain.setLayout(new BoxLayout(priceMain ,BoxLayout.X_AXIS));
+        JButton buyButton = new JButton("BUY");
+        JLabel priceText = new JLabel("Price");
+        JLabel price = new JLabel("฿ " + getPrice() );
+        priceShow.add(priceText);
+        priceShow.add(Box.createRigidArea(new Dimension(0,15)));
+        priceShow.add(price);
+        buyCoffeeButton.add(buyButton);
+        priceMain.add(priceShow);
+        priceMain.add(Box.createRigidArea(new Dimension(210,0)));
+        priceMain.add(buyCoffeeButton);
 
         backButton.addActionListener(new ActionListener() {
             @Override
@@ -131,7 +135,6 @@ public class CoffeeMachineGUI extends JFrame {
                 MainPanel3.setVisible(true);
                 backButton.setVisible(false);
                 BackPanel.setVisible(false);
-                Showingredient.setVisible(false);
 
             }
         });
@@ -143,6 +146,7 @@ public class CoffeeMachineGUI extends JFrame {
                     check2.setSelected(false);
                     check3.setSelected(false);
                     setCoffee("LATTE");
+                    setPrice(45);
                 }
             }
         });
@@ -153,7 +157,7 @@ public class CoffeeMachineGUI extends JFrame {
                     check1.setSelected(false);
                     check3.setSelected(false);
                     setCoffee("CAPPUCCINO");
-
+                    setPrice(50);
                 }
             }
         });
@@ -164,6 +168,7 @@ public class CoffeeMachineGUI extends JFrame {
                     check1.setSelected(false);
                     check2.setSelected(false);
                     setCoffee("ESPRESSO");
+                    setPrice(55);
                 }
             }
         });
@@ -248,7 +253,7 @@ public class CoffeeMachineGUI extends JFrame {
                 sizeS.setBackground(new Color(234, 202, 113, 255));
             }
 
-//            @Override
+            //            @Override
 //            public void mouseReleased(MouseEvent e) {
 //                sizeS.setContentAreaFilled(true);
 //                sizeS.setBackground(new Color(228, 210, 159, 255));
@@ -298,7 +303,7 @@ public class CoffeeMachineGUI extends JFrame {
                 sizeM.setBackground(new Color(234, 202, 113, 255));
             }
 
-//            @Override
+            //            @Override
 //            public void mouseReleased(MouseEvent e) {
 //                sizeM.setContentAreaFilled(true);
 //                sizeM.setBackground(new Color(228, 210, 159, 255));
@@ -350,7 +355,7 @@ public class CoffeeMachineGUI extends JFrame {
                 sizeL.setBackground(new Color(234, 202, 113, 255));
             }
 
-//            @Override
+            //            @Override
 //            public void mouseReleased(MouseEvent e) {
 //                sizeL.setContentAreaFilled(true);
 //                sizeL.setBackground(new Color(228, 210, 159, 255));
@@ -384,8 +389,10 @@ public class CoffeeMachineGUI extends JFrame {
         SizePanel1.add(sizeS);
         SizePanel1.add(sizeM);
         SizePanel1.add(sizeL);
+        BackPanel.setPreferredSize(new Dimension(350, 35));
         c.add(SizePanel1);
         c.add(BackPanel);
+        c.add(priceMain);
 //      End Buy Select Size Menue
 
 //     Fill Menue  ( water , milk , coffee , cups )
@@ -409,6 +416,12 @@ public class CoffeeMachineGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
+    }
+    public void setPrice(float price){
+        this.price = price;
+    }
+    public float getPrice(){
+        return this.price;
     }
     public void setCoffee(String coffee){
         this.coffee = coffee;
