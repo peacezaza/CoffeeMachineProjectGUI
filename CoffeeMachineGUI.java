@@ -10,22 +10,25 @@ public class CoffeeMachineGUI extends JFrame {
     static final int ESPRESSO_WATER_ML_PER_CUP = 250;
     static final int ESPRESSO_MILK_ML_PER_CUP = 0;
     static final int ESPRESSO_BEANS_G_PER_CUP = 16;
-    static final int ESPRESSO_PRICE = 4;
+
     static final int LATTE_WATER_ML_PER_CUP = 350;
     static final int LATTE_MILK_ML_PER_CUP = 75;
     static final int LATTE_BEANS_G_PER_CUP = 20;
-    static final int LATTE_PRICE = 7;
+
     static final int CAPPUCCINO_WATER_ML_PER_CUP = 200;
     static final int CAPPUCCINO_MILK_ML_PER_CUP = 100;
     static final int CAPPUCCINO_BEANS_G_PER_CUP = 12;
-    static final int CAPPUCCINO_PRICE = 6;
+
     private int count = 0;
     private int sizecount =0;
     private int water = 1000;
     private int milk = 500;
     private int beans= 300;
     private int cups = 30;
-    private int cash;
+
+    private float setmon = 0;
+    private float moneyInMachine;
+    private float cash;
     private float sizeprice;
     private float price;
     private String coffee;
@@ -51,9 +54,6 @@ public class CoffeeMachineGUI extends JFrame {
         //Panel 2 Choose Coffee
 
         /* All Image */
-//        JLabel S = new JLabel( new ImageIcon(((new ImageIcon("S.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-//        JLabel M = new JLabel( new ImageIcon(((new ImageIcon("M.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-//        JLabel L = new JLabel( new ImageIcon(((new ImageIcon("L.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
         File latteFile = new File("lat.png");
         File CapuccinoFile = new File("cap.png");
         File espressoFile = new File("es.png");
@@ -85,7 +85,6 @@ public class CoffeeMachineGUI extends JFrame {
         c.add(MainPanel4);
 
 //       add Pictures and back button to container
-
         // Panel1 Coffee image
         MainPanel1.add(latte);
         MainPanel1.add(capu);
@@ -183,6 +182,62 @@ public class CoffeeMachineGUI extends JFrame {
                     setCoffee("ESPRESSO");
                     setPrice(60);
                     price.setText("฿ " + getPrice() );
+                }
+            }
+        });
+        buyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame f=new JFrame();
+                float change;
+                try {
+                    if(water < LATTE_WATER_ML_PER_CUP || water < CAPPUCCINO_WATER_ML_PER_CUP || water < ESPRESSO_WATER_ML_PER_CUP){
+                        JOptionPane.showMessageDialog(f,"Not enough WATER ,Please Fill!","Alert",JOptionPane.WARNING_MESSAGE);
+                    }else if(milk < LATTE_MILK_ML_PER_CUP || milk < CAPPUCCINO_MILK_ML_PER_CUP || milk < ESPRESSO_MILK_ML_PER_CUP){
+                        JOptionPane.showMessageDialog(f,"Not enough MILK ,Please Fill!","Alert",JOptionPane.WARNING_MESSAGE);
+                    }else if(beans < LATTE_BEANS_G_PER_CUP || beans < CAPPUCCINO_BEANS_G_PER_CUP || beans < ESPRESSO_BEANS_G_PER_CUP){
+                        JOptionPane.showMessageDialog(f,"Not enough BEANS ,Please Fill!","Alert",JOptionPane.WARNING_MESSAGE);
+                    }else{
+                        String input = JOptionPane.showInputDialog("ENTER MONEY");
+                        setCash(Integer.parseInt(input));
+                        change = getCash() - getPrice();
+                        setmon += getPrice();
+                        setMachineCash(setmon);
+                        if(getCash() - getPrice() < 0){
+                            JOptionPane.showMessageDialog(f,"Not enough Money.","Alert",JOptionPane.WARNING_MESSAGE);
+                        }else{
+                            setCash(getPrice() - getCash());
+                            if(getCash() - getPrice()  != 0){
+                                JOptionPane.showMessageDialog(f,"Change: " + change);
+                            }
+                            switch (getCoffee()){
+                                case "LATTE":
+                                    water -= LATTE_WATER_ML_PER_CUP;
+                                    milk -= LATTE_MILK_ML_PER_CUP;
+                                    beans -= LATTE_BEANS_G_PER_CUP;
+                                    break;
+                                case "CAPPUCCINO":
+                                    water -= CAPPUCCINO_WATER_ML_PER_CUP;
+                                    milk -= CAPPUCCINO_MILK_ML_PER_CUP;
+                                    beans -= CAPPUCCINO_BEANS_G_PER_CUP;
+                                    break;
+                                case "ESPRESSO":
+                                    water -= ESPRESSO_WATER_ML_PER_CUP;
+                                    milk -= ESPRESSO_MILK_ML_PER_CUP;
+                                    beans -= ESPRESSO_BEANS_G_PER_CUP;
+                                    break;
+                                default:
+                                    break;
+                            }
+                            JOptionPane.showMessageDialog(f, "Buy "+ getCoffee() + " Size" + getCoffeeSize() +" Successful", "Successes", JOptionPane.INFORMATION_MESSAGE);
+                            System.out.println("Money in CoffeeMachine:" +getMachineCash());
+                            System.out.println("water: " + water);
+                            System.out.println("milk: " + milk);
+                            System.out.println("beans: " + beans);
+                        }
+                    }
+                }catch (Exception ex){
+                        JOptionPane.showMessageDialog(f,"Invalid Input","Error",JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -290,7 +345,6 @@ public class CoffeeMachineGUI extends JFrame {
                 super.mouseClicked(e);
                 if(sizecount == 1){
                     setPrice(getPrice()-getSizePrice());
-                    sizecount = 0;
                 }
                 sizecount = 1;
                 count += 1;
@@ -347,7 +401,6 @@ public class CoffeeMachineGUI extends JFrame {
                 super.mouseClicked(e);
                 if(sizecount == 1){
                     setPrice(getPrice()-getSizePrice());
-                    sizecount = 0;
                 }
                 sizecount = 1;
                 count += 1;
@@ -407,7 +460,6 @@ public class CoffeeMachineGUI extends JFrame {
                 super.mouseClicked(e);
                 if(sizecount == 1){
                     setPrice(getPrice()-getSizePrice());
-                    sizecount = 0;
                 }
                 sizecount = 1;
                 count += 1;
@@ -450,6 +502,18 @@ public class CoffeeMachineGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
+    }
+    public void setMachineCash(float cash){
+        this.moneyInMachine = cash;
+    }
+    public float getMachineCash(){
+        return this.moneyInMachine;
+    }
+    public void setCash(float cash){
+        this.cash = cash;
+    }
+    public float getCash(){
+        return this.cash;
     }
     public void setSizePrice(float size){
         this.sizeprice = size;
