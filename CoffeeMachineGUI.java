@@ -131,6 +131,9 @@ public class CoffeeMachineGUI extends JFrame {
         priceMain.add(priceShow);
         priceMain.add(Box.createRigidArea(new Dimension(210,0)));
         priceMain.add(buyCoffeeButton);
+        priceShow.setBackground(color);
+        buyCoffeeButton.setBackground(color);
+        priceMain.setBackground(color);
 
         backButton.addActionListener(new ActionListener() {
             @Override
@@ -289,7 +292,10 @@ public class CoffeeMachineGUI extends JFrame {
                 MainPanel1.setVisible(false);
                 MainPanel2.setVisible(false);
                 MainPanel3.setVisible(false);
+                SizePanel1.setVisible(false);
+                priceMain.setVisible(false);
                 backButton.setVisible(true);
+                BackPanel.setVisible(true);
                 check1.setSelected(false);
                 check2.setSelected(false);
                 check3.setSelected(false);
@@ -480,6 +486,7 @@ public class CoffeeMachineGUI extends JFrame {
         SizePanel1.add(sizeM);
         SizePanel1.add(sizeL);
         BackPanel.setPreferredSize(new Dimension(350, 35));
+        BackPanel.setBackground(color);
         c.add(SizePanel1);
         c.add(BackPanel);
         c.add(priceMain);
