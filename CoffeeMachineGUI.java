@@ -55,15 +55,6 @@ public class CoffeeMachineGUI extends JFrame {
 
         /* All Image */
 
-//        JLabel S = new JLabel( new ImageIcon(((new ImageIcon("S.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-//        JLabel M = new JLabel( new ImageIcon(((new ImageIcon("M.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-//        JLabel L = new JLabel( new ImageIcon(((new ImageIcon("L.png")).getImage()).getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH)));
-
-//        File latteFile = new File("Latte.png");
-//        File CapuccinoFile = new File("Cappuccino.png");
-//        File espressoFile = new File("Espresso.png");
-//        File turFile = new File("tur.png");
-
 
         File latteFile = new File("lat.png");
         File CapuccinoFile = new File("cap.png");
@@ -81,8 +72,7 @@ public class CoffeeMachineGUI extends JFrame {
 
 //        Create types of coffee label add them to the Jlabel Object
 
-        backButton = new JButton("Back");
-//        backButton.setHorizontalAlignment(SwingConstants.LEFT);
+        backButton = new JButton("Back");;
         backButton.setVisible(false);
         BackPanel.setVisible(false);
         MainPanel4.setLayout(new BoxLayout(MainPanel4, BoxLayout.Y_AXIS));
@@ -156,6 +146,7 @@ public class CoffeeMachineGUI extends JFrame {
                 MainPanel3.setVisible(true);
                 backButton.setVisible(false);
                 BackPanel.setVisible(false);
+//                fillPanel1.setVisible(false);
                 sizeS.setBackground(color);
                 sizeM.setBackground(color);
                 sizeL.setBackground(color);
@@ -308,11 +299,18 @@ public class CoffeeMachineGUI extends JFrame {
                 MainPanel3.setVisible(false);
                 SizePanel1.setVisible(false);
                 priceMain.setVisible(false);
-                backButton.setVisible(true);
+                //have to set this back button at the bottom of the page
+//                backButton.setVisible(true);
                 BackPanel.setVisible(true);
                 check1.setSelected(false);
                 check2.setSelected(false);
                 check3.setSelected(false);
+                fillPanel1.setVisible(true);
+                backButton.setVisible(true);
+
+
+
+
                 setSizePrice(0) ;
                 setPrice(0);
                 sizecount = 0;
@@ -442,7 +440,6 @@ public class CoffeeMachineGUI extends JFrame {
         L.setImage(lSizePicture);
         sizeL.setIcon(L);
         sizeL.setBackground(color);
-//        Border emptyBorder = BorderFactory.createEmptyBorder();
         sizeL.setBorder(emptyBorder);
 
         sizeL.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -458,11 +455,6 @@ public class CoffeeMachineGUI extends JFrame {
                 sizeL.setBackground(new Color(234, 202, 113, 255));
             }
 
-            //            @Override
-//            public void mouseReleased(MouseEvent e) {
-//                sizeL.setContentAreaFilled(true);
-//                sizeL.setBackground(new Color(228, 210, 159, 255));
-//            }
             @Override
             public void mouseExited(java.awt.event.MouseEvent e) {
                 JButton j = (JButton) e.getSource();
@@ -501,23 +493,34 @@ public class CoffeeMachineGUI extends JFrame {
         SizePanel1.add(sizeL);
         BackPanel.setPreferredSize(new Dimension(350, 35));
         BackPanel.setBackground(color);
-        c.add(SizePanel1);
-        c.add(BackPanel);
-        c.add(priceMain);
+//        c.add(fillPanel1);
+//        c.add(SizePanel1);
+//        c.add(BackPanel);
+//        c.add(priceMain);
 //      End Buy Select Size Menue
 
 //     Fill Menue  ( water , milk , coffee , cups )
         fillPanel1 = new JPanel();
         fillPanel2 = new JPanel();
         fillPanel3 = new JPanel();
-        JTextField textField1 = new JTextField();
-        JTextField textField2 = new JTextField();
-        JTextField textField3 = new JTextField();
         JLabel textlabel1 = new JLabel("water / ml : ");
         JLabel textlabel2 = new JLabel("milk / ml : ");
         JLabel textlabel3 = new JLabel("coffee / grams : ");
         JLabel textlabel4 = new JLabel("disposable cups : ");
+        fillPanel1.setLayout(new BoxLayout(fillPanel1,BoxLayout.Y_AXIS));
+
+        fillPanel1.add(textlabel1);fillPanel1.add(textlabel2);
+        fillPanel1.add(textlabel3);fillPanel1.add(textlabel4);
+
+
         //     End Fill
+
+        c.add(fillPanel1);
+        c.add(SizePanel1);
+        c.add(BackPanel);
+        c.add(priceMain);
+
+
         setSize(350,400);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
